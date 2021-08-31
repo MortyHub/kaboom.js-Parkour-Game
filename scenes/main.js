@@ -20,14 +20,14 @@ addLevel([
 	'!                                      ?',
 	'!                                      ?',
 	'!                                      ?',
-	'!                                      !',
-	'!                                      !',
-	'!                                      !',
-	'!                                      !',
-	'!                                      !',
-	'!                                      !',
-	'!                                      !',
-	'!                                      !',
+	'!                                      ?',
+	'!                                      ?',
+	'!                                      ?',
+	'!                                      ?',
+	'!                                      ?',
+	'!                                      ?',
+	'!                                      ?',
+	'!                                      ?',
 	'!xxxxxxxxxxxx   xxxxxxxxxxxx   xxxxxxxx?',
 	'!cccccccccccc   cccccccccccc   cccccccc?',
 	'!cccccccccccc   cccccccccccc   cccccccc?',
@@ -42,18 +42,19 @@ addLevel([
 	'!cccccccccccc   cccccccccccc   cccccccc?',
 	'!cccccccccccc   cccccccccccc   cccccccc?',
 	'!cccccccccccc   cccccccccccc   cccccccc?',
-	'!cccccccccccc   cccccccccccc   cccccccc?',
-	'!cccccccccccc   cccccccccccc   cccccccc?',
 	'!cccccccccccc   cccccccccccc   cccccccc ',
-	'cccccccccccc   cccccccccccc   cccccccc ',
-	'tttttttttttttttttttttttttttttttttttttt '
+	'!cccccccccccc   cccccccccccc   cccccccc ',
+	'!cccccccccccc   cccccccccccc   cccccccc ',
+	'!cccccccccccc   cccccccccccc   cccccccc ',
+	'tttttttttttttttttttttttttttttttttttttttt'
 ], {
 	width: 16,
 	height: 16,
 'x': [sprite('grass'), solid(), 'grass'],
 'c': [sprite('dirt'), solid(), 'dirt'],
 't': [sprite('enemy'), 'enemy'],
-'!': [sprite('!'), solid(), 'sus']
+'!': [sprite('!'), solid(), 'sus'],
+'?': [sprite('!'), solid(), 'suss']
 })
 const player = add([
 	sprite('Player'),
@@ -62,7 +63,8 @@ const player = add([
 	body()
 ])
 player.collides('enemy', () => {
-	destroy(player)
+	destroy(player),
+	go('main')
 })
 const move = 200
 keyDown('right', ()=>{
@@ -73,7 +75,7 @@ keyDown('left', ()=>{
 })
 const jump = 200
 keyDown('up', ()=>{
-	player.move(0,-200)
+	player.move(0,-250)
 })
 player.collides('dirt', ()=>{
 	player.move(0,-201)
@@ -83,4 +85,8 @@ player.collides('sus', ()=>{
 })
 player.collides('grass', ()=>{
 	player.move(0,-10)
+})
+player.collides('suss', ()=>{
+	player.move(-201,0),
+	go('1')
 })
