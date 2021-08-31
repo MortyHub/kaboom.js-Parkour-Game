@@ -89,5 +89,5 @@ player.collides('grass', ()=>{
 })
 player.collides('suss', ()=>{
 	player.move(-201,0),
-	go('2')
+	go('3')
 })
